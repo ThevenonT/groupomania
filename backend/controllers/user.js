@@ -44,7 +44,6 @@ exports.login = (req, res, next) => {
                     // return user._id et le token 
                     return res.status(200).json({
                         status: 200,
-                        userId: user._id,
                         // Créer un token sécurisé 
                         token: jwt.sign(
                             { payload: payload, userId: user._id },

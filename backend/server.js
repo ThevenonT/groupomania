@@ -1,7 +1,7 @@
 const { createServer } = require("http");
 const app = require('./app');
 require('dotenv').config();
-
+const cors = require('cors');
 
 
 // initialize le port 
@@ -63,6 +63,7 @@ httpServer.on('listening', () => {
 // ajoute le port a utilisé dans les paramètre 
 app.set('port', port);
 
+app.use(cors())
 
 
 httpServer.listen(port);
