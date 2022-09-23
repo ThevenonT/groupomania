@@ -1,0 +1,195 @@
+.nav {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #5d6395;
+    border-bottom: 2px solid black;
+    height: 60px;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+}
+
+/* Btn_Menu  */
+.container_Btn_Menu {
+    float: left;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 15%;
+    min-width: 150px;
+    height: 100%;
+
+}
+
+.container_Btn_Menu_content {
+    cursor: pointer;
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 30px;
+}
+
+.container_Btn_Menu_content:hover p.Btn_Menu::before,
+.container_Btn_Menu_content:hover p.Btn_Menu::after,
+.container_Btn_Menu_content:hover p.Btn::before,
+.container_Btn_Menu_content:hover p.Btn::after {
+    background-color: white;
+}
+
+/* affiche une croix  */
+.Btn::before {
+    content: "";
+    position: relative;
+    background-color: black;
+    width: 35px;
+    min-height: 3px;
+    bottom: -3px;
+    transform: rotateZ(45deg);
+    transition: all 0.2s linear;
+}
+
+.Btn {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 35px;
+    height: 3px;
+}
+
+.Btn::after {
+    content: "";
+    position: relative;
+    background-color: black;
+    width: 35px;
+    min-height: 3px;
+    transition: all 0.2s linear;
+    top: 0;
+    transform: rotateZ(-45deg);
+}
+
+/* affiche l'icône du menu */
+.Btn_Menu::before {
+    content: "";
+    position: relative;
+    background-color: black;
+    width: 35px;
+    min-height: 3px;
+    bottom: 8px;
+    transition: all 0.2s linear;
+
+}
+
+.Btn_Menu {
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    width: 35px;
+    height: 3px;
+
+}
+
+.Btn_Menu::after {
+
+    content: "";
+    position: relative;
+    top: 5px;
+    background-color: black;
+    width: 35px;
+    min-height: 3px;
+    transition: all 0.2s linear;
+
+}
+
+
+/* Btn-nav "bouton de navigation:  se connecté , connexion, créer un compte, se déconnecté,  */
+.container_Btn_Nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    min-width: 150px;
+    height: auto;
+    cursor: pointer;
+
+
+}
+
+.BtnNav {
+
+    transition: all 0.2s linear;
+    border-radius: 5px;
+    padding: 5px
+}
+
+.BtnNav:hover {
+    color: white;
+    text-decoration: underline;
+    transition: all 0.4s linear;
+}
+
+.logo {
+    height: auto;
+    width: 200px;
+}
+
+.container_menu {
+    margin-top: 60px;
+    transition: all 0.2s linear;
+    position: absolute;
+    background-color: #5d6395;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.423);
+    padding: 0px 10px 10px 10px;
+    height: auto;
+    width: 0px;
+    overflow: hidden;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-bottom-right-radius: 20px;
+    animation-name: animation_menu;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+}
+
+
+
+.container_menu p {
+    min-width: 150px;
+    padding: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.container_menu p:hover {
+    color: white;
+    border-bottom: 1px solid white;
+    transition: all 0.2s linear;
+}
+
+@keyframes animation_menu {
+    0% {
+        width: 0px;
+
+    }
+
+    100% {
+        width: 200px;
+    }
+}
+
+.active {
+    color: white;
+}
