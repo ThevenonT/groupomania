@@ -1,7 +1,7 @@
 ## FRONTEND
 
 ## Groupomania 
-This repository contains the frontend of this app.
+This folder contains the frontend of this app.
 To start the server on your computer you need 
 to clone the repository to this address `https://github.com/ThevenonT/groupomania.git`.
 go to the frontend folder and start the server.
