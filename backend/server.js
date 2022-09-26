@@ -65,5 +65,42 @@ app.set('port', port);
 
 app.use(cors())
 
+// se connecte au socket-client 
+const io = require("socket.io")(httpServer, {
+    cors: {
+        origin: "*",
+    },
+});
+// initialize le tableau des utilisateur connecté 
+let userCo = [];
+
+// s'execute a la connexion du client sur le server
+io.on('connection', (client) => {
+    // écoute l'évènement connexion 
+    client.on('connexion', (userId) => {
+
+
+        // ajoute l'id de connexion dans le tableau des utilisateur connecté 
+        userCo.push({ id: client.id, userId: userId })
+
+        // envoie le tableau des utilisateur connecté a tous les client connecté 
+        io.emit('userCo', userCo)
+        console.log('co');
+    })
+
+    // écoute l'évènement disconnect 
+    client.on('disconnect', (e) => {
+        // si l'utilisateur est présent dans le tableau des utilisateur connecté
+        if (userCo.filter(user => user.id === client.id).length > 0) {
+
+            console.log('deco');
+            // retire l'id de l'utilisateur du tableau des utilisateur connecté 
+            userCo = userCo.filter(user => user.id !== client.id);
+            // envoie le tableau des utilisateur connecté a tous les client connecté 
+            io.emit('userCo', userCo.filter(user => user.id !== client.id))
+        }
+
+    });
+})
 
 httpServer.listen(port);

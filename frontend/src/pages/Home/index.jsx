@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Header } from '../../components/Header';
 import { Login } from '../Login';
 import { Signup } from '../Signup';
-import { useVerifToken } from '../../utils/hooks/token';
 import { ProfilsConfig } from '../../pages/ProfilsConfig';
+import { ChatRoom } from '../../pages/ChatRoom';
+
+import { useVerifToken } from '../../utils/hooks/token';
 import { useFetch } from '../../utils/hooks/fetch.jsx';
+import { useFetchAllProfils } from '../../utils/hooks/FetchAllProfils';
+
+import io from 'socket.io-client';
 
 
 /** Contient la page d'accueil et gère la redirection */
@@ -19,6 +24,11 @@ const Home = () => {
     // gère la redirection
     const [navigation, setNavigation] = useState('actualité');
 
+    // contient la liste des utilisateur connecter 
+    const [userCo, setUserCo] = useState([]);
+
+    // state de connexion 
+    const [Co, setCo] = useState(false);
 
     /** Contient le token de l'utilisateur */
     let token;
@@ -46,6 +56,51 @@ const Home = () => {
     }
 
 
+    // récupère tous les utilisateurs présents
+    // récupère tous les posts présents 
+    const { AllProfils } = useFetchAllProfils('http://localhost:3000/api/profil/getAllProfils')
+
+
+    // gère le système de connexion 
+    useEffect(() => {
+
+        // se connecte au socket du server 
+        const socket = io.connect('http://localhost:3000');
+
+        // si un profil utilisateur est présent
+        // si le token est valide 
+        // si l'utilisateur n'est pas déjà connecté 
+        if (user_profil && validToken && !Co) {
+
+            console.log('effect');
+            console.log(user_profil.userId);
+            // inform le server de la connexion 
+            socket.emit('connexion', user_profil.userId)
+
+
+            // si un client est connecté 
+            // ou si le client se déconnecte 
+            socket.on('userCo', (userCo) => {
+                // log le tableau de utilisateur connecté 
+                console.log('connect', userCo);
+                console.log(userCo.length);
+                // ajoute le tableau dans le state 
+                setUserCo(userCo);
+                // passe le state de connexion socket a true 
+                return setCo(true)
+            });
+
+
+
+        }
+
+
+
+
+
+
+    }, [user_profil, validToken, Co])
+
     return (
         <>
             <Header validToken={validToken} setSignupState={setSignupState} SignupState={SignupState} navigation={navigation} setNavigation={setNavigation} />
@@ -59,7 +114,7 @@ const Home = () => {
                     <ProfilsConfig />
                     :
                     navigation === 'actualité' ?
-                        <h1>ChatRoom</h1>
+                        <ChatRoom AllProfils={AllProfils} user_profil={user_profil} userCo={userCo} />
                         : navigation === 'compte' ?
                             <h1>mon compte</h1>
                             : navigation === 'profil' &&
