@@ -8,7 +8,7 @@ const Sql = require('./utils/connectMySql');
     ** et la création d'un token sécurisé.
 */
 const userRoutes = require('./routes/user');
-
+const profilRoutes = require('./routes/profil');
 
 const path = require('path');
 require('dotenv').config();
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 
 // redirection des routes 
 app.use('/api/auth', userRoutes);
-
+app.use('/api/profil', profilRoutes);
 
 
 // ajout du chemin static 

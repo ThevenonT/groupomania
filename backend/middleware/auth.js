@@ -26,7 +26,7 @@ module.exports = (req, res, next) => {
             return res.status(403).json({ error: error, status: 403, msgErr: 'unauthorized request!' });
 
         } else {
-            res.status(200).json({ status: 200, userId })
+
             next();
         }
 

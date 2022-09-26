@@ -33,9 +33,7 @@ async function Query(DB_name, SQL_req) {
         // fait la requête sql 
         await sequelize.query(SQL_req)
             .then(async ([results]) => {
-
                 Result = results;
-
             })
             .catch(error => {
                 return console.log('il y a un problème !!! : ', error)
