@@ -3,6 +3,8 @@ import { Header } from '../../components/Header';
 import { Login } from '../Login';
 import { Signup } from '../Signup';
 import { useVerifToken } from '../../utils/hooks/token';
+import { ProfilsConfig } from '../../pages/ProfilsConfig';
+import { useFetch } from '../../utils/hooks/fetch.jsx';
 
 
 /** Contient la page d'accueil et gère la redirection */
@@ -32,6 +34,18 @@ const Home = () => {
     const { validToken, loader } = useVerifToken(token);
 
 
+    // contient le profil utilisateur 
+    const [user_profil, setUser_profil] = useState();
+    // récupère le profil utilisateur 
+    const { data } = useFetch('http://localhost:3000/api/profil/getOneData');
+    // si un profil est récupéré et qu'aucun profil n'est present 
+    if (data && !user_profil) {
+        console.log('userProfil', data);
+        // ajoute les information du profil dans le state 
+        setUser_profil(data[0]);
+    }
+
+
     return (
         <>
             <Header validToken={validToken} setSignupState={setSignupState} SignupState={SignupState} navigation={navigation} setNavigation={setNavigation} />
@@ -41,7 +55,15 @@ const Home = () => {
                     :
                     <Login setErrorLogin={setErrorLogin} ErrorLogin={ErrorLogin} />
                 :
-                <h1>token valid</h1>
+                !user_profil ?
+                    <ProfilsConfig />
+                    :
+                    navigation === 'actualité' ?
+                        <h1>ChatRoom</h1>
+                        : navigation === 'compte' ?
+                            <h1>mon compte</h1>
+                            : navigation === 'profil' &&
+                            <h1>mon profil</h1>
             }
 
         </>
