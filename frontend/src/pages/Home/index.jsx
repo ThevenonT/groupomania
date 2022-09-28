@@ -50,9 +50,12 @@ const Home = () => {
     const { data } = useFetch('http://localhost:3000/api/profil/getOneData');
     // si un profil est récupéré et qu'aucun profil n'est present 
     if (data && !user_profil) {
-        console.log('userProfil', data);
-        // ajoute les information du profil dans le state 
-        setUser_profil(data[0]);
+        // si le tableau récupéré contient au moins un profil
+        if (data.length !== 0) {
+            console.log('userProfil', data);
+            // ajoute les information du profil dans le state 
+            setUser_profil(data[0]);
+        }
     }
 
 
@@ -94,12 +97,8 @@ const Home = () => {
 
         }
 
-
-
-
-
-
-    }, [user_profil, validToken, Co])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user_profil])
 
     return (
         <>

@@ -101,13 +101,13 @@ export const Login = ({ ErrorLogin, setErrorLogin }) => {
             <div className={styles.container_content}>
                 <h2 className={styles.title}>Se Connecter</h2>
                 <form className={styles.form} onSubmit={Submit}>
-                    <div className={styles.input_text}>
+                    <div className={styles.container_input_text}>
                         {!loading && ErrorLogin !== '' ?
                             <p className={styles.error} id='error'>{ErrorLogin}</p>
                             : <p id='error'>{ErrorLogin}</p>
                         }
-                        <input className={styles.inputText} onChange={EmailInput} value={emailValue} type="email" name="email" id="email" placeholder='Exemple@hotmail.com' required />
-                        <input className={styles.inputText} onChange={PasswordInput} value={passwordValue} type="password" name="password" id="password" placeholder='mot de passe' required />
+                        <input className={styles.input_text} onChange={EmailInput} value={emailValue} type="email" name="email" id="email" placeholder='Exemple@hotmail.com' required />
+                        <input className={styles.input_text} onChange={PasswordInput} value={passwordValue} type="password" name="password" id="password" placeholder='mot de passe' required />
                     </div>
                     {!loading ?
                         <input className={styles.btnSubmit} type="submit" value="Submit" />

@@ -35,10 +35,16 @@ exports.getOneData = (req, res) => {
 
 // ajoute un profils utilisateur 
 exports.AddProfilsData = (req, res) => {
-
+    console.log(req.body);
     const userId = req.auth.userId;
+    let file;
+    if (req.file === undefined) {
+        file = 'images/profil/default/profils_default2.png'
+    } else {
+        file = req.file.path;
+    }
     // eslint-disable-next-line no-useless-concat
-    Sql.Query('groupomania', `INSERT INTO profils (id, nom, prenom, description, image, userId) VALUES (NULL, '${req.body.nom}', '${req.body.prenom}', '${req.body.description}', '${req.file.path}', '${userId}');`)
+    Sql.Query('groupomania', `INSERT INTO profils (id, nom, prenom, description, image, userId) VALUES (NULL, '${req.body.nom}', '${req.body.prenom}', '${req.body.description}', '${file}', '${userId}');`)
         .then((response) => {
             console.log(response)
             return res.status(200).json({ status: 200, message: 'profils configuré !!' })

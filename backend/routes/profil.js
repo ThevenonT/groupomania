@@ -14,4 +14,6 @@ router.get('/getOneData', auth, profilCtrl.getOneData);
 router.post('/addProfilsData', auth, multer, profilCtrl.AddProfilsData);
 
 
+
+
 module.exports = router;

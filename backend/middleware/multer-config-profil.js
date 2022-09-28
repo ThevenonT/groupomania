@@ -17,6 +17,7 @@ const storage = multer.diskStorage({
     // configure le chemin et le nom du fichier 
     filename: (req, file, callback) => {
         console.log('multer-file', file);
+
         /** * récupère le nom de l'image */
         const name = file.originalname.split(' ').join('_');
 
