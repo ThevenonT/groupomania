@@ -76,10 +76,30 @@ let userCo = [];
 
 // s'execute a la connexion du client sur le server
 io.on('connection', (client) => {
+
+    // écoute l'évènement AddPost 
+    client.on('AddPost', (Post) => {
+        // Envoie du post à tout les utilisateurs 
+        io.emit('post', Post)
+
+    })
+    // écoute l'évènement DeletePost
+    client.on('DeletePost', (Post) => {
+        console.log('DeletePost');
+        // Envoie du post à tout les utilisateurs 
+        io.emit('PostDeleted', Post)
+
+    })
+
+    client.on('addlike', (like) => {
+        console.log('AddLike : like');
+        // Envoie du post à tout les utilisateurs 
+        io.emit('like', like)
+
+    })
+
     // écoute l'évènement connexion 
     client.on('connexion', (userId) => {
-
-
         // ajoute l'id de connexion dans le tableau des utilisateur connecté 
         userCo.push({ id: client.id, userId: userId })
 
