@@ -161,6 +161,7 @@
     animation-name: animation_menu;
     animation-duration: 0.3s;
     animation-fill-mode: forwards;
+    z-index: 100;
 }
 
 
