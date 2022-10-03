@@ -103,15 +103,15 @@ export const Signup = ({ setErrorLogin, setSignupState }) => {
             <div className={styles.container_content}>
                 <h2 className={styles.title}>Créer un Compte</h2>
                 <form className={styles.form} onSubmit={Submit}>
-                    <div className={styles.input_text}>
+                    <div className={styles.container_input_text}>
                         {ErrorSignup !== ''
                             ? <p className={styles.error} id='error'>{ErrorSignup}</p>
                             : <p id='error'>{ErrorSignup}</p>
                         }
 
-                        <input onChange={EmailInput} value={emailValue} type="email" name="email" id="email" placeholder='Exemple@hotmail.com' required />
-                        <input onChange={PasswordInput} value={passwordValue} type="password" name="password" id="password" placeholder='mot de passe' required />
-                        <input onChange={rePasswordInput} value={rePasswordValue} type="password" name="repassword" id="repassword" placeholder='retapez votre mot de passe' required />
+                        <input className={styles.input_text} onChange={EmailInput} value={emailValue} type="email" name="email" id="email" placeholder='Exemple@hotmail.com' required />
+                        <input className={styles.input_text} onChange={PasswordInput} value={passwordValue} type="password" name="password" id="password" placeholder='mot de passe' required />
+                        <input className={styles.input_text} onChange={rePasswordInput} value={rePasswordValue} type="password" name="repassword" id="repassword" placeholder='retapez votre mot de passe' required />
                     </div>
                     {!loading ?
                         <input className={styles.btnSubmit} type="submit" value="Submit" />

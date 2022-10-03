@@ -19,7 +19,7 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
 
     // passe a true si l'utilisateur clique sur le btn de visualisation de connexion
     const [profilUser, setProfilUser] = useState(false)
-    // state btn ajouter un post 
+    // state btn ajouter un post passe a true quand l'utilisateur clique sur ajouter un post
     const [addPost, setAddPost] = useState(false);
 
 

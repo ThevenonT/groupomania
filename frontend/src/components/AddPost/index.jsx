@@ -9,8 +9,9 @@ export const AddPost = ({ setAddPost }) => {
 
     // contient l'image de prévisualisation renseigné par l'utilisateur 
     const [imagePreview, setImagePreview] = useState('');
-
+    // contient la description du post saisie par l'utilisateur  
     const [descriptionValue, setDescriptionValue] = useState('');
+
     /** retourne la saisie utilisateur de la description */
     function descriptionVal(e) {
         setDescriptionValue(e.target.value)
@@ -27,6 +28,7 @@ export const AddPost = ({ setAddPost }) => {
         // récupère la date du jour en français 
         let option = { weekday: "long", year: "numeric", month: "long", day: "2-digit" };
         console.log(new Date().toLocaleDateString("fr-FR", option));
+
         // récupère la date du jour 
         let date = ('0' + new Date().getDate()).slice(-2) + "/" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "/" + new Date().getFullYear();
         // récupère l'heure actuel
