@@ -79,12 +79,9 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
                 )
                 :
                 <>
-                    <div className={styles.AddPost} >
+                    <div className={styles.info} >
                         <h1>Soyez le premier à ajouter un post</h1>
                         <p>Vous pouvez ajouter un post en cliquant sur le bouton ajouter un post ci-dessus</p>
-
-
-
                     </div>
                 </>
 

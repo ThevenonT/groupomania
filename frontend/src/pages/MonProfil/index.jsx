@@ -38,7 +38,7 @@ export const MonProfil = ({ user_profil, socket, PostsUser, setPostUser }) => {
                     </>
                     :
                     <>
-                        <div className={styles.AddPost} >
+                        <div className={styles.info} >
                             <h1>Vous n'avez pas encore de post</h1>
                             <p>Vous pouvez ajouter un post en cliquant sur ajouter un post dans le fil d'actualité</p>
                             <p>ou remplissez les informations ci-dessous</p>
