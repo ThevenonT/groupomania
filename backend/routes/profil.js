@@ -13,6 +13,11 @@ router.get('/getOneData', auth, profilCtrl.getOneData);
 // si /api/post/add est présent dans l'URL return la fonction AddProfilsData présent dans ../controllers/post
 router.post('/addProfilsData', auth, multer, profilCtrl.AddProfilsData);
 
+// si /api/post/add est présent dans l'URL return la fonction AddProfilsData présent dans ../controllers/post
+router.post('/modifyProfilsData', auth, multer, profilCtrl.ModifyProfilsData);
+
+// si /api/post/add est présent dans l'URL return la fonction AddProfilsData présent dans ../controllers/post
+router.post('/deleted', auth, profilCtrl.deleted);
 
 
 

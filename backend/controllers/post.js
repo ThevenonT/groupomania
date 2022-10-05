@@ -3,7 +3,7 @@ const fs = require('fs');
 
 // affiche les post
 exports.getAllPost = (req, res, next) => {
-    console.log('body', req.body);
+
     Sql.Query('groupomania', `SELECT * FROM post ORDER BY id DESC`)
         .then((response) => {
 

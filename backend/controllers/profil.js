@@ -1,5 +1,6 @@
 const Sql = require('../utils/connectMySql');
-
+const fs = require('fs');
+const User = require('../models/User');
 
 // récupère le profils de tout les utilisateurs 
 exports.getAllProfils = (req, res) => {
@@ -53,4 +54,132 @@ exports.AddProfilsData = (req, res) => {
             console.log(err);
             return res.status(500).json({ err, status: 500, message: 'il y a un problème !!' })
         })
+}
+// ajoute un profils utilisateur 
+exports.ModifyProfilsData = (req, res) => {
+
+
+    let file;
+    if (req.file === undefined) {
+        file = req.body.imageUrl
+    } else {
+        file = req.file.path;
+    }
+    // récupère le nom de l'image
+    const filename = req.body.imageUrl.split('images/')[1];
+
+
+
+    Sql.Query('groupomania', `UPDATE profils SET nom = '${req.body.nom}', prenom = '${req.body.prenom}', description = '${req.body.description}', image = '${file}' WHERE profils.id = ${req.body.id};`)
+        .then(() => {
+
+            if (req.file !== undefined) {
+                // supprime l'image du 
+                fs.unlink(`images/${filename}`, () => {
+
+
+                    return res.status(200).json({ status: 200, message: 'profils configuré !!' })
+
+                })
+            } else {
+                return res.status(200).json({ status: 200, message: 'profils configuré !!' })
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.status(500).json({ err, status: 500, message: 'il y a un problème !!' })
+        })
+}
+
+// supprime toute les informations de l'utilisateur 
+exports.deleted = (req, res) => {
+
+    console.log(req.body);
+    // récupère tout les poste de l'utilisateur dans un tableau 
+    Sql.Query('groupomania', ` SELECT * FROM post WHERE post.userId = '${req.body.user_profil.userId}'`)
+        .then((response) => {
+
+            console.log(response);
+
+            // se répète autant de fois qui il y de post dans le tableau 
+            if (response.length > 0) {
+                for (let i = 0; i < response.length; i++) {
+
+                    // récupère le nom de l'image
+                    const filename = response[i].image.split('images/')[1];
+
+                    // supprime l'image du dossier 
+                    fs.unlink(`images/${filename}`, () => {
+
+                        // vérifie que toute les images présente dans les poste de l'utilisateur on été supprimé
+                        // s'execute a la dernière boucle du for
+                        if (response.length - 1 === i) {
+                            console.log('toute les image du post on été supprimé !');
+                            // supprime tous les post de l'utilisateur 
+                            Sql.Query('groupomania', `DELETE FROM post WHERE post.userId = '${req.body.user_profil.userId}'`)
+                                .then((response) => {
+
+                                    console.log('ok');
+
+                                })
+                                .catch((err) => {
+                                    console.log(err);
+                                    return res.status(500).json({ err, status: 500, message: 'il y a un problème !!' })
+                                })
+                        }
+                    })
+
+                }
+            }
+
+
+            // supprime le profil de l'utilisateur 
+            Sql.Query('groupomania', `DELETE FROM profils WHERE profils.userId = '${req.body.user_profil.userId}'`)
+                .then((response) => {
+
+                    console.log('ok');
+                    // récupère le nom de l'image
+                    const filename = req.body.user_profil.image.split('images/')[1];
+
+                    // vérifie si l'image n'est pas celle par default
+                    if (String(filename) !== 'profil/default/profils_default2.png') {
+                        // supprime l'image du profil
+                        fs.unlink(`images/${filename}`, () => {
+                            console.log('img profil supprimé !');
+                            // supprime le compte de l'utilisateur 
+                            User.remove({ _id: req.body.user_profil.userId })
+                                .then((user) => {
+                                    console.log(user);
+
+                                    return res.status(200).json({ status: 200, msg: 'compte supprimé !' })
+
+                                })
+                        })
+                    } else {
+                        // supprime le compte de l'utilisateur 
+                        User.remove({ _id: req.body.user_profil.userId })
+                            .then((user) => {
+                                console.log(user);
+
+                                return res.status(200).json({ status: 200, msg: 'compte supprimé !' })
+
+                            })
+                    }
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                    return res.status(500).json({ err, status: 500, message: 'il y a un problème !!' })
+                })
+
+
+
+
+        })
+        .catch((err) => {
+            console.log(err);
+            return res.status(500).json({ err, status: 500, message: 'il y a un problème !!' })
+        })
+
+
 }
