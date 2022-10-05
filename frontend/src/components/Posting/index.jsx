@@ -111,10 +111,10 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
                         <div className={styles.container_post_content}>
                             <img src={'http://localhost:3000/' + post.image} alt='' width='100%' height='100%' />
                             <div className={styles.img_post_content_information}>
-                                <p className={styles.img_info_date}>posté le {post.date} à {post.heure}</p>
+                                <p className={styles.img_info_date}>Posté le {post.date} à {post.heure}</p>
 
                                 <div className={styles.img_info_description}>
-                                    <p>description :</p>
+                                    <p>Description :</p>
                                     <p className={styles.description}>{post.description}</p>
 
                                 </div>

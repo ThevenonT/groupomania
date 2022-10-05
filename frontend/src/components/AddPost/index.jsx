@@ -95,14 +95,14 @@ export const AddPost = ({ setAddPost }) => {
     return (
         <>
             <form onSubmit={(e) => submit(e)} className={styles.form_AddPost}>
-                <p onClick={() => setAddPost(false)} className={styles.btn_close}>annuler</p>
+                <p onClick={() => setAddPost(false)} className={styles.btn_close}>Annuler</p>
                 <div className={styles.form_AddPost_addImg}>
-                    <label className={styles.form_AddPost_imgPreview} htmlFor='image' placeholder='ajouter une image'>
+                    <label className={styles.form_AddPost_imgPreview} htmlFor='image' placeholder='Ajouter une image'>
                         <img src={imagePreview ? imagePreview : imgDefault} alt='img' width="auto" height="100px" />
                     </label>
                     <input className={styles.form_AddPost_input} type="file" name="image" id='image' onChange={(e) => uploadImg(e)} accept=".png, .jpg, .jpeg" />
                 </div>
-                <textarea onChange={(e) => descriptionVal(e)} className={styles.form_AddPost_textarea} type="text" name='description' placeholder='ajouter une description' />
+                <textarea onChange={(e) => descriptionVal(e)} className={styles.form_AddPost_textarea} type="text" name='description' placeholder='Ajouter une description' />
                 <input className={styles.form_btn} type="submit" value='Ajouter le post' />
             </form>
         </>

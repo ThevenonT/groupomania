@@ -19,7 +19,7 @@ export const MonProfil = ({ user_profil, socket, PostsUser, setPostUser }) => {
 
     return (
         <div className={styles.container}>
-            <h2 className={styles.title}>mon profil</h2>
+            <h2 className={styles.title}>Mon profil</h2>
             <div className={styles.flex_reverse}>
 
                 {user_profil && PostsUser.length > 0 ?
@@ -28,7 +28,7 @@ export const MonProfil = ({ user_profil, socket, PostsUser, setPostUser }) => {
                             {addPost
                                 ? <AddPost setAddPost={setAddPost} />
                                 : <div className={styles.container_addPost} onClick={() => setAddPost(!addPost)} >
-                                    <h3 onClick={() => setAddPost(!addPost)} >+ ajouter un post</h3>
+                                    <h3 onClick={() => setAddPost(!addPost)} >+ Ajouter un post</h3>
                                 </div>
                             }
                         </div>
@@ -40,7 +40,7 @@ export const MonProfil = ({ user_profil, socket, PostsUser, setPostUser }) => {
                     <>
                         <div className={styles.info} >
                             <h1>Vous n'avez pas encore de post</h1>
-                            <p>Vous pouvez ajouter un post en cliquant sur ajouter un post dans le fil d'actualité</p>
+                            <p>Vous pouvez ajouter un post en cliquant sur "ajouter un post" dans le fil d'actualité</p>
                             <p>ou remplissez les informations ci-dessous</p>
                         </div>
                         <div className={styles.AddPost} >

@@ -10,7 +10,7 @@ export function ProfilUtilisateur({ styles, userCo, AllProfils, user_profil }) {
 
     return (
         <div className={styles.profils}>
-            <p>mon profil</p>
+            <p>Mon profil</p>
             <div className={styles.profil} >
                 <div className={styles.userInfo}>
                     <p>{user_profil.nom}</p>
@@ -20,7 +20,7 @@ export function ProfilUtilisateur({ styles, userCo, AllProfils, user_profil }) {
                 <span className={styles.Co}></span>
             </div>
 
-            <p>profil utilisateurs</p>
+            <p>Profils utilisateurs</p>
             {AllProfils && AllProfils.filter((userr) => userr.userId !== user_profil.userId).map((user) =>
                 <div className={styles.profil} key={user.id}>
                     <div className={styles.userInfo}>

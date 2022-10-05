@@ -43,7 +43,7 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
     return (
         <div className={styles.container}>
 
-            <h2 className={styles.title}>fil d'actualité</h2>
+            <h2 className={styles.title}>Fil d'actualité</h2>
 
             {/* système de visualisation de connexion */}
             <div className={`${styles.ProfilUtilisateur} + ${styles.close}`}>
@@ -68,7 +68,7 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
                     ? <AddPost setAddPost={setAddPost} />
                     :
                     <div className={styles.container_addPost} onClick={() => setAddPost(!addPost)} >
-                        <h3 onClick={() => setAddPost(!addPost)} >+ ajouter un post</h3>
+                        <h3 onClick={() => setAddPost(!addPost)} >+ Ajouter un post</h3>
                     </div>
                 }
             </div>
@@ -81,7 +81,7 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
                 <>
                     <div className={styles.info} >
                         <h1>Soyez le premier à ajouter un post</h1>
-                        <p>Vous pouvez ajouter un post en cliquant sur le bouton ajouter un post ci-dessus</p>
+                        <p>Vous pouvez ajouter un post en cliquant sur le bouton "ajouter un post" ci-dessus</p>
                     </div>
                 </>
 

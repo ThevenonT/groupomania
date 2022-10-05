@@ -96,7 +96,7 @@ export function ProfilsConfig() {
                 }
 
             } else {
-                setError("Merci de remplir votre prenom !")
+                setError("Merci de remplir votre prénom !")
             }
 
         } else {
@@ -109,22 +109,22 @@ export function ProfilsConfig() {
     return (
         <div className={styles.container}>
             <div className={styles.container_content}>
-                <h2 className={styles.title}>Configurations du profils</h2>
+                <h2 className={styles.title}>Configuration du profil</h2>
                 <form className={styles.form} onSubmit={(e) => submit(e)} encType='multipart/form-data'>
                     <div className={styles.container_input_text}>
                         <input className={styles.input_text} type="text" onChange={(e) => nomVal(e)} placeholder="Nom" />
                         <input className={styles.input_text} type="text" onChange={(e) => prenomVal(e)} placeholder="Prénom" />
-                        <input className={styles.input_text} type="text" onChange={(e) => descriptionVal(e)} placeholder="description" />
+                        <input className={styles.input_text} type="text" onChange={(e) => descriptionVal(e)} placeholder="Description" />
                         <div className={styles.container_img}>
-                            <p className={styles.img_info}>ajouté une photo de profil</p>
-                            <label className={styles.form_AddPost_imgPreview} htmlFor='image' placeholder='ajouter une image'>
+                            <p className={styles.img_info}>Ajouter une photo de profil</p>
+                            <label className={styles.form_AddPost_imgPreview} htmlFor='image' placeholder='Ajouter une image'>
                                 <img className={styles.preview} src={imagePreview ? imagePreview : imgDefault} alt='img' width="auto" height="100px" />
                             </label>
                             <input className={styles.fileLook} type="file" name="image" id='image' onChange={(e) => uploadImg(e)} accept=".png, .jpg, .jpeg" />
                         </div>
                         <p className={styles.Error}>{Error}</p>
                     </div>
-                    <input className={styles.btnSubmit} type="submit" value="Submit" />
+                    <input className={styles.btnSubmit} type="submit" value="Créer un profil" />
                 </form>
             </div>
         </div>

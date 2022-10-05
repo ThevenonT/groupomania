@@ -33,7 +33,7 @@ export const Signup = ({ setErrorLogin, setSignupState }) => {
     // au click sur submit
     function Submit(event) {
         // indique a l'utilisateur de patienté !
-        setErrorSignup('merci de patienté !');
+        setErrorSignup('Merci de patienter !');
 
         // active le chargement 
         setLoading(true);
@@ -43,7 +43,7 @@ export const Signup = ({ setErrorLogin, setSignupState }) => {
 
         // vérifie si l'utilisateur a tapé deux fois le même mots de passe 
         if (passwordValue !== rePasswordValue) {
-            return Errors('merci de vérifié le mot de passe ')
+            return Errors('Merci de vérifier le mot de passe ')
         }
 
         // crée un objet json nommé user 
@@ -72,7 +72,7 @@ export const Signup = ({ setErrorLogin, setSignupState }) => {
                 // si l'email et le mot de passe son valide  
                 if (response.status === 201) {
                     // indique a l'utilisateur de se connecté 
-                    setErrorLogin('merci de vous connectez !!');
+                    setErrorLogin('Merci de vous connecter !!');
                     // affiche la page login
                     setSignupState(false);
                 }
@@ -101,7 +101,7 @@ export const Signup = ({ setErrorLogin, setSignupState }) => {
     return (
         <div className={styles.container}>
             <div className={styles.container_content}>
-                <h2 className={styles.title}>Créer un Compte</h2>
+                <h2 className={styles.title}>Créer un compte</h2>
                 <form className={styles.form} onSubmit={Submit}>
                     <div className={styles.container_input_text}>
                         {ErrorSignup !== ''
@@ -110,13 +110,13 @@ export const Signup = ({ setErrorLogin, setSignupState }) => {
                         }
 
                         <input className={styles.input_text} onChange={EmailInput} value={emailValue} type="email" name="email" id="email" placeholder='Exemple@hotmail.com' required />
-                        <input className={styles.input_text} onChange={PasswordInput} value={passwordValue} type="password" name="password" id="password" placeholder='mot de passe' required />
-                        <input className={styles.input_text} onChange={rePasswordInput} value={rePasswordValue} type="password" name="repassword" id="repassword" placeholder='retapez votre mot de passe' required />
+                        <input className={styles.input_text} onChange={PasswordInput} value={passwordValue} type="password" name="password" id="password" placeholder='Mot de passe' required />
+                        <input className={styles.input_text} onChange={rePasswordInput} value={rePasswordValue} type="password" name="repassword" id="repassword" placeholder='Retapez votre mot de passe' required />
                     </div>
                     {!loading ?
-                        <input className={styles.btnSubmit} type="submit" value="Submit" />
+                        <input className={styles.btnSubmit} type="submit" value="Créer un compte" />
                         :
-                        <input className={styles.btnSubmit + ' ' + styles.animValidation} type="submit" value="Submit" />
+                        <input className={styles.btnSubmit + ' ' + styles.animValidation} type="submit" value="Créer un compte" />
                     }
                 </form>
             </div>

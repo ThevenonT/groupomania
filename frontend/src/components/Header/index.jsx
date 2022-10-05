@@ -63,15 +63,15 @@ export const Header = ({ validToken, SignupState, setSignupState, navigation, se
                         {!validToken ?
                             <>
                                 {!SignupState ?
-                                    <p className={styles.BtnNav} onClick={() => { setSignupState(true) }}>Créer Un Compte</p>
+                                    <p className={styles.BtnNav} onClick={() => { setSignupState(true) }}>Créer un compte</p>
                                     :
-                                    <p className={styles.BtnNav} onClick={() => { setSignupState(false) }}>Se Connecter</p>
+                                    <p className={styles.BtnNav} onClick={() => { setSignupState(false) }}>Se connecter</p>
                                 }
                             </>
                             :
                             <>
                                 {
-                                    <p className={styles.BtnNav} onClick={() => { sessionStorage.clear('userSession'); window.location.reload(); }}>Se Déconnecter</p>
+                                    <p className={styles.BtnNav} onClick={() => { sessionStorage.clear('userSession'); window.location.reload(); }}>Se déconnecter</p>
                                 }
                             </>
                         }
@@ -80,8 +80,8 @@ export const Header = ({ validToken, SignupState, setSignupState, navigation, se
             </nav>
             {validToken && Btn_click &&
                 <div className={styles.container_menu}>
-                    <p onClick={() => { actualite() }} className={navigation === 'actualité' ? 'active' : ''}>fil d'actualité</p>
-                    <p onClick={() => { profil() }}>profils</p>
+                    <p onClick={() => { actualite() }} className={navigation === 'actualité' ? 'active' : ''}>Fil d'actualité</p>
+                    <p onClick={() => { profil() }}>Mon Profil</p>
                     <p onClick={() => { compte() }}>Mon Compte</p>
                 </div>
             }

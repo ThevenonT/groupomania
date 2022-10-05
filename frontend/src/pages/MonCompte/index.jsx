@@ -58,7 +58,7 @@ function MonCompte({ user_profil }) {
     // gère la boite de confirmation pour la modification
     function Verif(event) {
         // initialisation de la question a poser a l'utilisateur 
-        setQuestion('je suis sur de vouloir modifié mon profil ? ');
+        setQuestion('Je suis sûr de vouloir modifier mon profil ? ');
         // retire les évènement par default
         event.preventDefault();
         // ajoute l'évènement au state 
@@ -139,7 +139,7 @@ function MonCompte({ user_profil }) {
     // gère la boite de confirmation pour la suppression 
     function VerifDeleted() {
         // initialisation de la question a poser a l'utilisateur 
-        setQuestion('je suis sur de vouloir supprimé mon compte, ainsi que toute les information relatif a se compte ?');
+        setQuestion('Je suis sûr de vouloir supprimer mon compte, ainsi que toutes les informations relatives à ce compte ?');
         // affiche l'alert
         setConfirmBoxDeleted(true)
 
@@ -196,7 +196,7 @@ function MonCompte({ user_profil }) {
                         <input className={styles.input_text} type="text" onChange={(e) => prenomVal(e)} placeholder={user_profil && user_profil.prenom} />
                         <input className={styles.input_text} type="text" onChange={(e) => descriptionVal(e)} placeholder={user_profil && user_profil.description} />
                         <div className={styles.container_img}>
-                            <p className={styles.img_info}>modifié votre photo de profil</p>
+                            <p className={styles.img_info}>Modifier votre photo de profil</p>
                             <label className={styles.form_AddPost_imgPreview} htmlFor='image' placeholder='ajouter une image'>
                                 <img className={styles.preview} src={imagePreview ? imagePreview : 'http://localhost:3000/' + user_profil.image} alt='img' width="auto" height="100px" />
                             </label>

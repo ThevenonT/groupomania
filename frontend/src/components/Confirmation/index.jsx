@@ -19,7 +19,7 @@ function Confirmation({ question, submit, event, setConfirmBox, MsgImportant }) 
           <h3 className={styles.texte}>{question}</h3>
         </div>
         <div className={styles.container_btn}>
-          <p className={styles.valide} onClick={() => submit(event)}>Validé</p>
+          <p className={styles.valide} onClick={() => submit(event)}>Valider</p>
           <p className={styles.annule} onClick={() => setConfirmBox(false)}>Annuler</p>
         </div>
       </div>
