@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import styles from '../../utils/style/chatRoom/style.module.css';
+import styles from '../../utils/style/components/posting/style.module.css';
+import Confirmation from '../Confirmation';
 import LikeOrDislike from '../LikeOrDislike';
 
 
@@ -15,14 +16,18 @@ function Posting({ post, user_profil, socket, PostsUser, setPostUser }) {
     }
 
 
-    // passe a true si l'utilisateur clique sur delete
-    const [clickDelete, setClickDelete] = useState(false);
+
 
     // contient la liste des userId des utilisateur qui ont like se post
     const [UsersLiked, setUsersLiked] = useState(JSON.parse(post.usersliked));
 
     // contient la liste des userId des utilisateur qui ont dislike se post
     const [UsersDisliked, setUsersDisliked] = useState(JSON.parse(post.usersdisliked));
+
+    // affiche la boite de confirmation
+    const [confirmBox, setConfirmBox] = useState(false);
+
+
 
     /** status du visuelle des like ou dislike 
      * true = like
@@ -43,7 +48,7 @@ function Posting({ post, user_profil, socket, PostsUser, setPostUser }) {
 
         }
     }
-    // vérifié si l'userId de l'utilisateur est présent dans le tableau des like
+    // vérifié si l'userId de l'utilisateur est présent dans le tableau des dislike
     if (JSON.parse(post.usersdisliked).length > 0) {
         // récupère le poste présent et vérifie si il est déclaré 
         if (JSON.parse(post.usersdisliked).filter((user) => user === user_profil.userId).length > 0) {
@@ -84,10 +89,14 @@ function Posting({ post, user_profil, socket, PostsUser, setPostUser }) {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+    function verif() {
+        // affiche la boite de confirmation
+        setConfirmBox(true)
+    }
 
     function deleted() {
 
-        setClickDelete(true)
+
         // créer le post a transmettre par le corp de la requête
         let Post = {
             id: String(post.id),
@@ -119,46 +128,52 @@ function Posting({ post, user_profil, socket, PostsUser, setPostUser }) {
 
             })
     }
-
-
+    // contient la question a poser a l'utilisateur 
+    let question = 'je suis sur de vouloir supprimé se poste ?'
     return (
-
-        <div className={!clickDelete ? styles.container_content : styles.container_content + styles.delete} >
-            {user_profil &&
-                <>
-                    <div className={styles.user_profil}>
-                        <div className={styles.img_profil}>
-                            <img src={'http://localhost:3000/' + user_profil.image} alt="profil" />
+        <>
+            {confirmBox &&
+                <Confirmation question={question} submit={deleted} setConfirmBox={setConfirmBox} />
+            }
+            <div className={styles.container_content} >
+                {user_profil &&
+                    <>
+                        <div className={styles.user_profil}>
+                            <div className={styles.img_profil}>
+                                <img src={'http://localhost:3000/' + user_profil.image} alt="profil" />
+                            </div>
+                            <div className={styles.user_info}>
+                                <p>{user_profil.nom} {user_profil.prenom}</p>
+                            </div>
                         </div>
-                        <div className={styles.user_info}>
-                            <p>{user_profil.nom} {user_profil.prenom}</p>
-                        </div>
-                    </div>
 
 
-                    <div className={styles.container_post}>
-                        <div className={styles.img_post}>
-                            <img src={'http://localhost:3000/' + post.image} alt='' />
-                            <div className={styles.img_post_content}>
-                                <p className={styles.img_info_date}>posté le {post.date} à {post.heure}</p>
+                        <div className={styles.container_post}>
+                            <div className={styles.container_post_content}>
+                                <img src={'http://localhost:3000/' + post.image} alt='' width='100%' height='100%' />
+                                <div className={styles.img_post_content_information}>
+                                    <p className={styles.img_info_date}>posté le {post.date} à {post.heure}</p>
 
-                                <div className={styles.img_info_description}>
-                                    <p>description :</p>
-                                    <p className={styles.description}>{post.description}</p>
+                                    <div className={styles.img_info_description}>
+                                        <p>description :</p>
+                                        <p className={styles.description}>{post.description}</p>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.container_button}>
-                        <div className={styles.container_btn_delete}>
-                            <p className={styles.btn_delete} onClick={() => deleted()}>delete</p>
+                        <div className={styles.container_button}>
+                            <div className={styles.container_btn_delete}>
+                                <div className={styles.container_content_btn_delete} onClick={() => verif()}>
+                                    <p className={styles.btn_delete} >delete</p>
+                                </div>
+                            </div>
+                            <LikeOrDislike DislikeOrLike={DislikeOrLike} setDislikeOrLike={setDislikeOrLike} styles={styles} UsersLiked={UsersLiked} setUsersLiked={setUsersDisliked} UsersDisliked={UsersDisliked} setUsersDisliked={setUsersDisliked} post={post} token={token} user_profil={user_profil} socket={socket} />
                         </div>
-                        <LikeOrDislike DislikeOrLike={DislikeOrLike} setDislikeOrLike={setDislikeOrLike} styles={styles} UsersLiked={UsersLiked} setUsersLiked={setUsersDisliked} UsersDisliked={UsersDisliked} setUsersDisliked={setUsersDisliked} post={post} token={token} user_profil={user_profil} socket={socket} />
-                    </div>
-                </>
-            }
-        </div>
+                    </>
+                }
+            </div>
+        </>
     )
 };
 export default Posting

@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
+import styles from '../../utils/style/components/likeordislike/style.module.css'
 
 
-function LikeOrDislike({ DislikeOrLike, setDislikeOrLike, styles, UsersLiked, setUsersLiked, UsersDisliked, setUsersDisliked, post, token, user_profil, socket }) {
+function LikeOrDislike({ DislikeOrLike, setDislikeOrLike, UsersLiked, setUsersLiked, UsersDisliked, setUsersDisliked, post, token, user_profil, socket }) {
 
 
     // gère le système de like

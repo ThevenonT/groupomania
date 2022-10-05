@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import imgDefault from '../../assets/images_profils/profils_default2.png'
-import styles from '../../utils/style/chatRoom/style.module.css'
+import styles from '../../utils/style/components/addpost/style.module.css'
 import io from 'socket.io-client';
 
 
@@ -102,8 +102,8 @@ export const AddPost = ({ setAddPost }) => {
                     </label>
                     <input className={styles.form_AddPost_input} type="file" name="image" id='image' onChange={(e) => uploadImg(e)} accept=".png, .jpg, .jpeg" />
                 </div>
-                <textarea onChange={(e) => descriptionVal(e)} className={styles.form_AddPost_textarea} type="text" name='description' placeholder='ajouté une description' />
-                <input className={styles.form_btn} type="submit" value='Ajouté le post' />
+                <textarea onChange={(e) => descriptionVal(e)} className={styles.form_AddPost_textarea} type="text" name='description' placeholder='ajouter une description' />
+                <input className={styles.form_btn} type="submit" value='Ajouter le post' />
             </form>
         </>
     )

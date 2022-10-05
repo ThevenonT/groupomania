@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../utils/style/connexion/style.module.css';
+import styles from '../../utils/style/pages/connexion/style.module.css';
 
 
 

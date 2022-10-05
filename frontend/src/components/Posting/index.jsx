@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styles from '../../utils/style/chatRoom/style.module.css';
+import styles from '../../utils/style/components/posting/style.module.css';
 import LikeOrDislike from '../LikeOrDislike';
 
 
@@ -17,8 +17,10 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
     // récupère le profil associé au poste 
     let user_profils;
     // si AllProfils est déclaré
-    if (AllProfils) {
+    if (AllProfils && AllProfils.length > 0) {
+
         user_profils = AllProfils.filter(profile => profile.userId === post.userId)
+
     }
 
 
@@ -97,7 +99,7 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
                 <>
                     <div className={styles.user_profil}>
                         <div className={styles.img_profil}>
-                            <img src={'http://localhost:3000/' + user_profils[0].image} alt="profil" />
+                            <img src={'http://localhost:3000/' + user_profils[0].image} alt="profil" width='100%' height='100%' />
                         </div>
                         <div className={styles.user_info}>
                             <p>{user_profils[0].nom} {user_profils[0].prenom}</p>
@@ -106,9 +108,9 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
 
 
                     <div className={styles.container_post}>
-                        <div className={styles.img_post}>
-                            <img src={'http://localhost:3000/' + post.image} alt='' />
-                            <div className={styles.img_post_content}>
+                        <div className={styles.container_post_content}>
+                            <img src={'http://localhost:3000/' + post.image} alt='' width='100%' height='100%' />
+                            <div className={styles.img_post_content_information}>
                                 <p className={styles.img_info_date}>posté le {post.date} à {post.heure}</p>
 
                                 <div className={styles.img_info_description}>

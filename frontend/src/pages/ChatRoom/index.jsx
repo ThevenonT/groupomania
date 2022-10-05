@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../utils/style/chatRoom/style.module.css';
+import styles from '../../utils/style/pages/chatRoom/style.module.css';
 import { ProfilUtilisateur } from '../ProfilUtilisateur/index.jsx';
 import { AddPost } from '../../components/AddPost'
 import Posting from '../../components/Posting'
@@ -48,7 +48,7 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
             {/* système de visualisation de connexion */}
             <div className={`${styles.ProfilUtilisateur} + ${styles.close}`}>
 
-                <ProfilUtilisateur user_profil={user_profil} userCo={userCo} AllProfils={AllProfils} />
+                <ProfilUtilisateur styles={styles} user_profil={user_profil} userCo={userCo} AllProfils={AllProfils} />
 
                 {profilUser ?
                     <span onClick={(e) => closeProfilsUsers(e)} className={styles.croix}></span>
@@ -61,20 +61,34 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
                     </div>
                 }
             </div>
+
             {/* formulaire d'ajout de post */}
             <div className={styles.AddPost} >
                 {addPost
                     ? <AddPost setAddPost={setAddPost} />
-                    : <div className={styles.container_addPost} onClick={() => setAddPost(!addPost)} >
+                    :
+                    <div className={styles.container_addPost} onClick={() => setAddPost(!addPost)} >
                         <h3 onClick={() => setAddPost(!addPost)} >+ ajouter un post</h3>
                     </div>
                 }
             </div>
             {/* affiche les post présent */}
-            {postAll &&
+            {postAll && postAll.length > 0 ?
                 postAll.map((post) =>
                     <Posting key={'post' + Math.random()} socket={socket} user_profil={user_profil} post={post} postAll={postAll} setPostAll={setPostAll} AllProfils={AllProfils} />
-                )}
+                )
+                :
+                <>
+                    <div className={styles.AddPost} >
+                        <h1>Soyez le premier à ajouter un post</h1>
+                        <p>Vous pouvez ajouter un post en cliquant sur le bouton ajouter un post ci-dessus</p>
+
+
+
+                    </div>
+                </>
+
+            }
         </div>
 
 

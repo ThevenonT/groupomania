@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../../utils/style/header/style.module.css';
+import styles from '../../utils/style/components/header/style.module.css';
 import logo from '../../assets/logo.png';
 
 
@@ -48,32 +48,34 @@ export const Header = ({ validToken, SignupState, setSignupState, navigation, se
     return (
         <>
             <nav className={styles.nav}>
-                <div className={styles.container_Btn_Menu}>
-                    <div onClick={() => { setBtn_click(!Btn_click) }} className={styles.container_Btn_Menu_content}>
-                        {validToken && !Btn_click ?
-                            <p className={styles.Btn_Menu}></p>
-                            : validToken &&
-                            <p className={styles.Btn} ></p>
+                <div className={styles.container_nav}>
+                    <div className={styles.container_Btn_Menu}>
+                        <div onClick={() => { setBtn_click(!Btn_click) }} className={styles.container_Btn_Menu_content}>
+                            {validToken && !Btn_click ?
+                                <p className={styles.Btn_Menu}></p>
+                                : validToken &&
+                                <p className={styles.Btn} ></p>
+                            }
+                        </div>
+                    </div>
+                    <img className={styles.logo} alt='logo' src={logo} />
+                    <div className={styles.container_Btn_Nav}>
+                        {!validToken ?
+                            <>
+                                {!SignupState ?
+                                    <p className={styles.BtnNav} onClick={() => { setSignupState(true) }}>Créer Un Compte</p>
+                                    :
+                                    <p className={styles.BtnNav} onClick={() => { setSignupState(false) }}>Se Connecter</p>
+                                }
+                            </>
+                            :
+                            <>
+                                {
+                                    <p className={styles.BtnNav} onClick={() => { sessionStorage.clear('userSession'); window.location.reload(); }}>Se Déconnecter</p>
+                                }
+                            </>
                         }
                     </div>
-                </div>
-                <img className={styles.logo} alt='logo' src={logo} />
-                <div className={styles.container_Btn_Nav}>
-                    {!validToken ?
-                        <>
-                            {!SignupState ?
-                                <p className={styles.BtnNav} onClick={() => { setSignupState(true) }}>Créer Un Compte</p>
-                                :
-                                <p className={styles.BtnNav} onClick={() => { setSignupState(false) }}>Se Connecter</p>
-                            }
-                        </>
-                        :
-                        <>
-                            {
-                                <p className={styles.BtnNav} onClick={() => { sessionStorage.clear('userSession'); window.location.reload(); }}>Se Déconnecter</p>
-                            }
-                        </>
-                    }
                 </div>
             </nav>
             {validToken && Btn_click &&

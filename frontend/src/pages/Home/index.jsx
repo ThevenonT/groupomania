@@ -5,6 +5,8 @@ import { Signup } from '../Signup';
 import { ProfilsConfig } from '../../pages/ProfilsConfig';
 import { ChatRoom } from '../../pages/ChatRoom';
 import { MonProfil } from '../../pages/MonProfil';
+import MonCompte from '../MonCompte';
+
 
 import { useVerifToken } from '../../utils/hooks/token';
 import { useFetch } from '../../utils/hooks/fetch.jsx';
@@ -92,7 +94,6 @@ const Home = () => {
     // gère le système de visualisation connexion 
     useEffect(() => {
 
-
         // si un profil utilisateur est présent
         // si le token est valide 
         // si l'utilisateur n'est pas déjà connecté 
@@ -120,7 +121,7 @@ const Home = () => {
 
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user_profil, socket])
+    }, [user_profil])
 
     // gère le système de poste (socket)
     useEffect(() => {
@@ -161,7 +162,7 @@ const Home = () => {
         })
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [postAll, socket])
+    }, [postAll])
 
 
 
@@ -180,7 +181,7 @@ const Home = () => {
                     navigation === 'actualité' ?
                         <ChatRoom postAll={postAll} setPostAll={setPostAll} AllProfils={AllProfils} user_profil={user_profil} userCo={userCo} socket={socket} />
                         : navigation === 'compte' ?
-                            <h1>mon compte</h1>
+                            <MonCompte user_profil={user_profil} />
                             : navigation === 'profil' &&
                             <MonProfil user_profil={user_profil} socket={socket} PostsUser={PostsUser} setPostUser={setPostUser} />
             }

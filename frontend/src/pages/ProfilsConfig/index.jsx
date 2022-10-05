@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import imgDefault from '../../assets/images_profils/profils_default2.png'
-import styles from '../../utils/style/connexion/style.module.css'
+import styles from '../../utils/style/pages/connexion/style.module.css'
 /**
  * affiche un formulaire pour la création du profil utilisateur */
 export function ProfilsConfig() {
