@@ -1,0 +1,204 @@
+/* Posting */
+
+.container_content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    flex-direction: column;
+    width: 80%;
+    min-width: 200px;
+    max-width: 700px;
+    min-height: 200px;
+    margin: 30px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.497);
+    background-color: rgba(255, 255, 255, 0.174);
+
+}
+
+.user_profil {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    top: -40px;
+    left: -20px;
+    height: auto;
+    min-height: 50px;
+
+}
+
+.img_profil {
+
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    margin: 0;
+}
+
+.img_profil img {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.user_info {
+    position: relative;
+    right: 4px;
+    padding: 5px 20px;
+    background-color: white;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.container_post {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+    max-width: 800px;
+    height: auto;
+    max-height: 500px;
+    margin: 50px;
+}
+
+.container_post_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.497);
+
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.5);
+
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.container_post_content img {
+
+    width: 100%;
+}
+
+.container_post_content:hover .img_post_content_information {
+    border-radius: 20px;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s linear;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.img_post_content_information {
+    border-radius: 30px;
+    position: absolute;
+    content: " ";
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+
+}
+
+.container_post_content:hover .img_info_date,
+.container_post_content:hover .img_info_description {
+    transition: all 0.2s linear;
+    color: white;
+    background-color: rgba(8, 8, 8, 0.636);
+
+}
+
+.img_info_date {
+    z-index: 1;
+    color: transparent;
+    padding: 10px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.img_info_description {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: transparent;
+    padding: 10px 10px 20px 20px;
+    border-radius: 20px;
+    width: 100%;
+    max-height: 300px;
+    overflow: scroll;
+}
+
+.description {
+
+    padding-left: 15px;
+}
+
+/* MonProfil */
+.flex_reverse {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container_button {
+
+    position: relative;
+    bottom: 30px;
+    height: 0px;
+    width: 100%;
+}
+
+.container_btn_delete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    bottom: 10px;
+    left: 10%;
+}
+
+.btn_delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.583);
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+
+}
+
+.btn_delete:hover {
+    background-color: white;
+}
+
+.delete {
+    width: 0px;
+    height: 0px;
+    transition: all 0.2s linear;
+    overflow: hidden;
+}

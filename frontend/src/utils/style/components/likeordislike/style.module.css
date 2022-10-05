@@ -1,0 +1,80 @@
+/* LikeOrDislike */
+.container_like {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 0px;
+    position: relative;
+    bottom: 20px;
+}
+
+.like,
+.dislike {
+    position: relative;
+    right: 20px;
+    bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.336);
+    border-radius: 50%;
+    font-size: 20px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.NbLike,
+.NbDislike {
+    position: relative;
+    right: 20px;
+    bottom: 5px;
+    margin: 15px 20px 15px 5px
+}
+
+.like:hover {
+    font-size: 20px;
+    transition: All 0.1s linear;
+    background-color: rgba(0, 128, 0, 0.51);
+}
+
+.likeActive {
+    position: relative;
+    right: 20px;
+    bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.336);
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+    font-size: 30px;
+    transition: All 0.1s linear;
+    background-color: rgba(0, 128, 0, 0.51);
+}
+
+.dislikeActive {
+    position: relative;
+    right: 20px;
+    bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.336);
+    border-radius: 50%;
+    padding: 2px;
+
+    cursor: pointer;
+    font-size: 30px;
+    transition: All 0.1s linear;
+    background-color: rgba(128, 0, 0, 0.51);
+}
+
+.like:active {
+    user-select: none;
+    font-size: 25px;
+}
+
+.dislike:hover {
+    font-size: 20px;
+    transition: All 0.1s linear;
+    background-color: rgba(128, 0, 0, 0.555);
+
+}
+
+.dislike:active {
+    user-select: none;
+    font-size: 25px;
+}

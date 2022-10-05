@@ -1,26 +1,31 @@
 .nav {
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #5d6395;
-    border-bottom: 2px solid black;
     height: 60px;
     width: 100%;
-    position: absolute;
+    position: relative;
     z-index: 100;
+}
+
+.container_nav {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    background-color: #5d6395;
+    border-bottom: 2px solid black;
 }
 
 /* Btn_Menu  */
 .container_Btn_Menu {
-    float: left;
+    position: absolute;
+    left: 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
-    width: 15%;
-    min-width: 150px;
+    width: 20%;
+    min-width: 80px;
     height: 100%;
 
 }
@@ -116,11 +121,14 @@
 
 /* Btn-nav "bouton de navigation:  se connecté , connexion, créer un compte, se déconnecté,  */
 .container_Btn_Nav {
+    position: absolute;
+    right: 0px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15%;
-    min-width: 150px;
+    width: 25%;
+    min-width: 110px;
+    max-width: 200px;
     height: auto;
     cursor: pointer;
 
@@ -142,11 +150,12 @@
 
 .logo {
     height: auto;
-    width: 200px;
+    width: 40%;
+    max-width: 150px;
 }
 
 .container_menu {
-    margin-top: 60px;
+
     transition: all 0.2s linear;
     position: absolute;
     background-color: #5d6395;
@@ -193,4 +202,28 @@
 
 .active {
     color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .BtnNav {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .BtnNav {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+
+    .container_nav,
+    .nav {
+        height: 40px;
+    }
+
+    .BtnNav {
+        font-size: 11px;
+    }
 }

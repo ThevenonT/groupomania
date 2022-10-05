@@ -1,0 +1,136 @@
+@keyframes animation_alert {
+    0% {
+        height: 0%;
+
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+.container_confirmation {
+    animation-name: animation_alert;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.73);
+}
+
+.container_confirmation_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    min-height: 250px;
+    background-color: rgba(255, 255, 255, 0.865);
+}
+
+.important {
+    font-size: 20px;
+    margin: 10px;
+    color: red;
+}
+
+.croix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    min-height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: absolute;
+    left: -19px;
+    bottom: -19px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.croix::before {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transform: rotate(-45deg)
+}
+
+.croix::after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transform: rotate(45deg)
+}
+
+.title {
+    position: absolute;
+    top: -25px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px;
+}
+
+.container_texte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+}
+
+.texte {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+    width: 100%;
+    margin: 10px;
+}
+
+.container_btn {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.container_btn p {
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+}
+
+
+.valide:hover {
+    background-color: rgba(1, 207, 1, 0.645);
+
+}
+
+.annule:hover {
+    background-color: rgba(207, 1, 1, 0.645);
+}
