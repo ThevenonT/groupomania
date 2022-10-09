@@ -14,7 +14,7 @@ import Posting from '../../components/Posting'
  * @param {*} postAll contient le tableau de tout les posts 
  * @param {*} AllProfils contient le tableau de tout les Profils 
  */
-export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils, socket }) => {
+export const ChatRoom = ({ PostsUser, setPostUser, admin, userCo, user_profil, postAll, setPostAll, AllProfils, socket }) => {
 
 
     // passe a true si l'utilisateur clique sur le btn de visualisation de connexion
@@ -75,7 +75,7 @@ export const ChatRoom = ({ userCo, user_profil, postAll, setPostAll, AllProfils,
             {/* affiche les post présent */}
             {postAll && postAll.length > 0 ?
                 postAll.map((post) =>
-                    <Posting key={'post' + Math.random()} socket={socket} user_profil={user_profil} post={post} postAll={postAll} setPostAll={setPostAll} AllProfils={AllProfils} />
+                    <Posting key={'post' + Math.random()} admin={admin} PostsUser={PostsUser} setPostUser={setPostUser} socket={socket} user_profil={user_profil} post={post} postAll={postAll} setPostAll={setPostAll} AllProfils={AllProfils} />
                 )
                 :
                 <>

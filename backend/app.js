@@ -18,7 +18,21 @@ require('dotenv').config();
 app.use(express.json());
 
 // teste la connexion a la base de donnée mysql 
-Sql.TestConnexionMySql('groupomania');
+Sql.TestConnexionMySql('groupomania')
+    .then(async (result) => {
+        // si le résultat est false
+        if (result === false) {
+            // Créer une base de donnée 
+            Sql.CreatedBddMySql('groupomania')
+                .then((res) => {
+                    console.log(res);
+                    // si la base de donnée a bien été créer 
+                    if (res === true) {
+                        Sql.TestConnexionMySql('groupomania');
+                    }
+                })
+        }
+    })
 
 
 /* connection a la base de donnée mongoDB */

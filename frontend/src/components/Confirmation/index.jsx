@@ -9,6 +9,13 @@ import styles from '../../utils/style/components/confirmation/style.module.css'
  */
 function Confirmation({ question, submit, event, setConfirmBox, MsgImportant }) {
 
+  // si l'événement est définit 
+  if (event !== undefined)
+    // vérifie si il s'agit du compte administrateur 
+    if (event.id === 1) {
+      question = ''
+      MsgImportant = 'Impossible de supprimé le compte administrateur !'
+    }
 
   return (
     <div className={styles.container_confirmation}>

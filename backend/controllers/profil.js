@@ -68,7 +68,10 @@ exports.ModifyProfilsData = (req, res) => {
     // récupère le nom de l'image
     const filename = req.body.imageUrl.split('images/')[1];
 
-
+    // vérifie si il s'agit du compte administrateur 
+    if (req.body.id === '1') {
+        return res.status(401).json({ status: 401, message: 'impossible de supprimé le compte administrateur !' })
+    }
 
     Sql.Query('groupomania', `UPDATE profils SET nom = '${req.body.nom}', prenom = '${req.body.prenom}', description = '${req.body.description}', image = '${file}' WHERE profils.id = ${req.body.id};`)
         .then(() => {
@@ -93,7 +96,10 @@ exports.ModifyProfilsData = (req, res) => {
 
 // supprime toute les informations de l'utilisateur 
 exports.deleted = (req, res) => {
-
+    // vérifie si il s'agit du compte administrateur 
+    if (req.body.user_profil.userId === process.env.ADMIN_USERID) {
+        return res.status(401).json({ status: 401, message: 'impossible de supprimé le compte administrateur !' })
+    }
     console.log(req.body);
     // récupère tout les poste de l'utilisateur dans un tableau 
     Sql.Query('groupomania', ` SELECT * FROM post WHERE post.userId = '${req.body.user_profil.userId}'`)

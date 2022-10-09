@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Confirmation from '../../components/Confirmation';
 import styles from '../../utils/style/pages/connexion/style.module.css'
 
-function MonCompte({ user_profil }) {
+function MonCompte({ user_profil, AllProfils, admin }) {
 
 
     // contient le nom renseigné par l'utilisateur 
@@ -21,10 +21,15 @@ function MonCompte({ user_profil }) {
     const [confirmBoxModif, setConfirmBoxModif] = useState(false);
     // affiche la boite de confirmation pour la suppression du profil et du compte 
     const [confirmBoxDeleted, setConfirmBoxDeleted] = useState(false);
+    // affiche la boite de confirmation pour la suppression du profil et du compte 
+    const [confirmBoxDeletedAdmin, setConfirmBoxDeletedAdmin] = useState(false);
     // contient l'event pour la modification 
     const [e, setE] = useState();
     // contient la question a poser a l'utilisateur  
     const [question, setQuestion] = useState();
+    // contient le message important a transmettre a l'utilisateur 
+    const [MsgImportant, setMsgImportant] = useState();
+
 
     // récupère le token 
     let token
@@ -55,18 +60,27 @@ function MonCompte({ user_profil }) {
     }
 
 
+
     // gère la boite de confirmation pour la modification
     function Verif(event) {
-        // initialisation de la question a poser a l'utilisateur 
-        setQuestion('Je suis sûr de vouloir modifier mon profil ? ');
         // retire les évènement par default
         event.preventDefault();
+        // vérifie si il s'agit du compte administrateur 
+        if (user_profil.id === 1) {
+            setQuestion('');
+            setMsgImportant('impossible de modifier le profil administrateur !')
+        } else {
+            setMsgImportant('Votre compte sera modifier !')
+            // initialisation de la question a poser a l'utilisateur 
+            setQuestion('Je suis sûr de vouloir modifier mon profil ? ');
+        }
         // ajoute l'évènement au state 
         setE(event)
         // affiche l'alert
         setConfirmBoxModif(true)
 
     }
+
     // s'exécute a la validation de la boite de confirmation: modifie le profil
     function submit(e) {
 
@@ -114,9 +128,11 @@ function MonCompte({ user_profil }) {
                         .then((response) => response.json())
                         .then((response) => {
                             console.log(response);
+                            if (response.status === 200) {
+                                // recharge la page 
+                                window.location.reload();
 
-                            // recharge la page 
-                            window.location.reload();
+                            }
                         }).catch((err) => {
                             console.log(err);
                         })
@@ -136,17 +152,26 @@ function MonCompte({ user_profil }) {
     }
 
 
+
     // gère la boite de confirmation pour la suppression 
     function VerifDeleted() {
-        // initialisation de la question a poser a l'utilisateur 
-        setQuestion('Je suis sûr de vouloir supprimer mon compte, ainsi que toutes les informations relatives à ce compte ?');
+        if (user_profil.id === 1) {
+            setQuestion('');
+            setMsgImportant('impossible de supprimé le compte administrateur !')
+        } else {
+            setMsgImportant('Votre compte sera supprimé !')
+            // initialisation de la question a poser a l'utilisateur 
+            setQuestion('Je suis sûr de vouloir supprimer mon compte, ainsi que toutes les informations relatives à ce compte ?');
+        }
         // affiche l'alert
         setConfirmBoxDeleted(true)
 
     }
+
     // supprime toute les informations relatif à l'utilisateur 
     function deleted() {
         console.log('deleted');
+
         // crée un objet json nommé user 
         let user = {
             user_profil: user_profil
@@ -179,13 +204,64 @@ function MonCompte({ user_profil }) {
 
     }
 
+
+    // contient le profil a supprimé ( demande administrateur )
+    const [profil, setProfil] = useState()
+    // gère la boite de confirmation pour la suppression Admin
+    function VerifProfilSup(profil) {
+
+        setProfil(profil)
+        // initialisation de la question a poser a l'utilisateur 
+        setQuestion('Je suis sûr de vouloir supprimer ce compte, ainsi que toutes les informations relatives à ce compte ?');
+        // affiche l'alert
+        setConfirmBoxDeletedAdmin(true)
+
+    }
+    // function admin : supprime l'utilisateur sélectionné ainsi que toute ses informations
+    function ProfilSup(profil) {
+        console.log(profil);
+        // crée un objet json nommé user 
+        let user = {
+            user_profil: profil
+        };
+        // initialize les options et ajoute le body de la requête 
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Accept': 'application/json',
+                "content-type": "application/json",
+                'authorization': "Bearer " + token
+
+            },
+
+        };
+        // connecte l'utilisateur 
+        // requête l'api pour vérifié l'authenticité de l'email et du mot de passe fournie par l'utilisateur 
+        fetch("http://localhost:3000/api/profil/deleted", options)
+
+            .then((response) => response.json())
+            .then((response) => {
+                console.log(response);
+                if (response.status === 200) {
+
+                    window.location.reload();
+                }
+
+            })
+
+    }
+
     return (
         <div className={styles.container}>
             {confirmBoxModif &&
-                <Confirmation submit={submit} event={e} setConfirmBox={setConfirmBoxModif} question={question} />
+                <Confirmation submit={submit} event={e} setConfirmBox={setConfirmBoxModif} question={question} MsgImportant={MsgImportant} />
             }
             {confirmBoxDeleted &&
-                <Confirmation submit={deleted} event={e} setConfirmBox={setConfirmBoxDeleted} question={question} MsgImportant={'Votre compte sera supprimé !'} />
+                <Confirmation submit={deleted} event={e} setConfirmBox={setConfirmBoxDeleted} question={question} MsgImportant={MsgImportant} />
+            }
+            {confirmBoxDeletedAdmin &&
+                <Confirmation submit={ProfilSup} event={profil} setConfirmBox={setConfirmBoxDeletedAdmin} question={question} MsgImportant={'le compte sera supprimé !'} />
             }
             <div className={styles.container_content}>
                 <span className={styles.croix} onClick={() => VerifDeleted()}></span>
@@ -207,6 +283,23 @@ function MonCompte({ user_profil }) {
                     <input className={styles.btnSubmit} type="submit" value="Modifier" />
                 </form>
             </div>
+            {admin &&
+                <div className={styles.container_AllProfils}>
+                    <h3 className={styles.subtitle}>Profils présent</h3>
+                    {AllProfils.map((profil) =>
+                        <div key={profil.id} className={styles.userprofil} >
+                            <span className={styles.sup} onClick={() => VerifProfilSup(profil)}></span>
+
+                            <span className={styles.icone}>
+                                <img className={styles.imgProfil} width='60px' src={'http://localhost:3000/' + profil.image} alt='' />
+                            </span>
+                            <p className={styles.info}>{profil.nom}</p>
+                            <p className={styles.info}>{profil.prenom}</p>
+                        </div>
+                    )}
+                </div>
+            }
+
         </div>
     )
 }

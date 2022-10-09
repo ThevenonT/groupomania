@@ -178,6 +178,7 @@
     position: relative;
     bottom: 10px;
     left: 10%;
+    height: 30px;
 }
 
 .btn_delete {

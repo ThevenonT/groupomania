@@ -66,6 +66,31 @@
 
 }
 
+.checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.455);
+    color: white;
+    margin-top: 10px;
+    padding: 0px 5px;
+    cursor: pointer;
+}
+
+.checkbox label {
+    cursor: pointer;
+    padding-bottom: 5px;
+    padding-right: 5px;
+
+}
+
+.checkbox input[type=checkbox] {
+    cursor: pointer;
+    padding: 20px;
+
+}
 
 .btnSubmit {
     position: relative;
@@ -186,8 +211,8 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    min-height: 40px;
-    min-width: 40px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
     border: 2px solid black;
     position: absolute;
@@ -214,6 +239,88 @@
     height: 3px;
     background-color: black;
     transform: rotate(45deg)
+}
+
+.sup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: absolute;
+    top: 0px;
+    left: -10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sup::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background-color: black;
+    transform: rotate(-45deg)
+}
+
+.sup::after {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background-color: black;
+    transform: rotate(45deg)
+}
+
+.container_AllProfils {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.505);
+}
+
+.subtitle {
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.userprofil {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    width: 90%;
+
+    border-bottom: 1px solid black;
+}
+
+.icone {
+
+    padding: 0px;
+    width: auto;
+    height: 66px;
+
+}
+
+.imgProfil {
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+
+}
+
+
+
+.info {
+    margin-left: 10px;
 }
 
 @media only screen and (max-width: 320px) {

@@ -12,6 +12,8 @@ export function useVerifToken(token) {
     // passe a true si un chargement est nécessaire
     const [loader, setLoader] = useState(true);
 
+    // passe a true si l'utilisateur se connecte avec le compte administrateur 
+    const [Admin, setAdmin] = useState(false)
 
     // se déclenche un fois au changement de token 
     useEffect(() => {
@@ -46,9 +48,11 @@ export function useVerifToken(token) {
                 const data = await response.json()
                 // si le status est a 200
                 if (data.status === 200) {
+                    if (data.admin) {
+                        setAdmin(true)
+                    }
                     // valide le token 
                     setValidToken(true);
-
                     // ou si le status est a 401 
                 } else if (data.status === 401) {
                     // ne valide pas le token 
@@ -65,5 +69,5 @@ export function useVerifToken(token) {
 
     }, [token, validToken])
 
-    return { validToken, loader }
+    return { validToken, loader, Admin }
 }

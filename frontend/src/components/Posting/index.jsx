@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../utils/style/components/posting/style.module.css';
 import LikeOrDislike from '../LikeOrDislike';
+import Confirmation from '../Confirmation';
 
 
-function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll }) {
+function Posting({ admin, PostsUser, setPostUser, post, AllProfils, user_profil, socket, postAll, setPostAll }) {
 
 
 
@@ -23,6 +24,8 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
 
     }
 
+    // affiche la boite de confirmation
+    const [confirmBox, setConfirmBox] = useState(false);
 
     // contient la liste des userId des utilisateur qui ont like se post
     const [UsersLiked, setUsersLiked] = useState(JSON.parse(post.usersliked));
@@ -36,6 +39,7 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
      * undefined = none
      */
     const [DislikeOrLike, setDislikeOrLike] = useState();
+
 
     // vérifié si l'userId de l'utilisateur est présent dans le tableau des like
     if (JSON.parse(post.usersliked).length > 0) {
@@ -92,9 +96,54 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
     }, [socket])
 
 
+    // contient la question a poser a l'utilisateur 
+    let question = 'Je suis sûr de vouloir supprimer ce post ?'
+
+    function verif() {
+        // affiche la boite de confirmation
+        setConfirmBox(true)
+    }
+
+    function deleted() {
+
+
+        // créer le post a transmettre par le corp de la requête
+        let Post = {
+            id: String(post.id),
+            post: post
+        }
+
+
+        // initialize les options de la requête 
+        const options = {
+            method: 'POST',
+            body: JSON.stringify(Post),
+            headers: {
+                'Accept': 'application/json',
+                "content-type": "application/json",
+                'authorization': "Bearer " + token
+            },
+        };
+
+        fetch("http://localhost:3000/api/post/DeletedPostData", options)
+
+            .then((response) => response.json())
+            .then((response) => {
+                console.log(response);
+                // informe le server du like 
+                socket.emit('DeletePost', JSON.stringify(post.id))
+                // mets a jour le state des post de l'utilisateur 
+                setPostUser(PostsUser.filter((user) => user.userId === user_profil.userId).filter((user) => user.id !== post.id))
+
+
+            })
+    }
     return (
 
         <div className={styles.container_content}>
+            {confirmBox &&
+                <Confirmation question={question} submit={deleted} setConfirmBox={setConfirmBox} />
+            }
             {user_profil && AllProfils &&
                 <>
                     <div className={styles.user_profil}>
@@ -121,7 +170,16 @@ function Posting({ post, AllProfils, user_profil, socket, postAll, setPostAll })
                             </div>
                         </div>
                     </div>
-                    <LikeOrDislike DislikeOrLike={DislikeOrLike} setDislikeOrLike={setDislikeOrLike} styles={styles} UsersLiked={UsersLiked} setUsersLiked={setUsersDisliked} UsersDisliked={UsersDisliked} setUsersDisliked={setUsersDisliked} post={post} token={token} user_profil={user_profil} socket={socket} />
+                    <div className={styles.container_button}>
+                        <div className={styles.container_btn_delete}>
+                            {admin &&
+                                <div className={styles.container_content_btn_delete} onClick={() => verif()}>
+                                    <p className={styles.btn_delete} >Supprimer</p>
+                                </div>
+                            }
+                        </div>
+                        <LikeOrDislike DislikeOrLike={DislikeOrLike} setDislikeOrLike={setDislikeOrLike} styles={styles} UsersLiked={UsersLiked} setUsersLiked={setUsersDisliked} UsersDisliked={UsersDisliked} setUsersDisliked={setUsersDisliked} post={post} token={token} user_profil={user_profil} socket={socket} />
+                    </div>
                 </>
             }
         </div>

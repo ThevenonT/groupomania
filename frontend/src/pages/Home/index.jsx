@@ -36,6 +36,8 @@ const Home = () => {
     // state de connexion 
     const [Co, setCo] = useState(false);
 
+
+
     // se connecte au socket du server 
     const socket = io.connect('http://localhost:3000');
 
@@ -51,7 +53,8 @@ const Home = () => {
 
     // vérifie le token 
     // eslint-disable-next-line no-unused-vars
-    const { validToken, loader } = useVerifToken(token);
+    const { validToken, loader, Admin } = useVerifToken(token);
+
 
 
     // contient le profil utilisateur 
@@ -69,7 +72,6 @@ const Home = () => {
     }
 
     // récupère tous les utilisateurs présents
-    // récupère tous les posts présents 
     const { AllProfils } = useFetchAllProfils('http://localhost:3000/api/profil/getAllProfils')
 
 
@@ -179,9 +181,9 @@ const Home = () => {
                     <ProfilsConfig />
                     :
                     navigation === 'actualité' ?
-                        <ChatRoom postAll={postAll} setPostAll={setPostAll} AllProfils={AllProfils} user_profil={user_profil} userCo={userCo} socket={socket} />
+                        <ChatRoom admin={Admin} PostsUser={PostsUser} setPostUser={setPostUser} postAll={postAll} setPostAll={setPostAll} AllProfils={AllProfils} user_profil={user_profil} userCo={userCo} socket={socket} />
                         : navigation === 'compte' ?
-                            <MonCompte user_profil={user_profil} />
+                            <MonCompte user_profil={user_profil} admin={Admin} AllProfils={AllProfils} />
                             : navigation === 'profil' &&
                             <MonProfil user_profil={user_profil} socket={socket} PostsUser={PostsUser} setPostUser={setPostUser} />
             }

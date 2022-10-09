@@ -15,6 +15,8 @@ export const Login = ({ ErrorLogin, setErrorLogin }) => {
     const [emailValue, setEmailValue] = useState('');
     // contient la valeur du mot de passe saisie par l'utilisateur 
     const [passwordValue, setPasswordValue] = useState('');
+    // contient le temps de connexion  de l'utilisateur 
+    const [checkbox, setCheckbox] = useState('');
 
     // passe a true si un chargement est nécessaire 
     const [loading, setLoading] = useState(false);
@@ -27,6 +29,20 @@ export const Login = ({ ErrorLogin, setErrorLogin }) => {
     /** récupère l'email saisie par l'utilisateur */
     function PasswordInput(e) {
         setPasswordValue(e.target.value);
+    }
+
+    // gère si l'utilisateur souhaite rester connecter
+    function checkBox(e) {
+
+
+        console.log('stayCo', e.target.checked);
+
+        if (e.target.checked) {
+            setCheckbox('24h')
+        } else {
+            setCheckbox('4h')
+        }
+        console.log(checkbox);
     }
 
 
@@ -42,7 +58,8 @@ export const Login = ({ ErrorLogin, setErrorLogin }) => {
         // crée un objet json nommé user 
         let user = {
             email: String(emailValue),
-            password: String(passwordValue)
+            password: String(passwordValue),
+            stayCo: String(checkbox)
         };
         // initialize les options et ajoute le body de la requête 
         const options = {
@@ -63,6 +80,8 @@ export const Login = ({ ErrorLogin, setErrorLogin }) => {
 
                 // si l'email et le mot de passe son authentique 
                 if (response.status === 200) {
+
+
 
                     // enregistre l'userSession dans le localStorage 
                     sessionStorage.setItem('userSession', JSON.stringify({ token: response.token }));
@@ -108,6 +127,10 @@ export const Login = ({ ErrorLogin, setErrorLogin }) => {
                         }
                         <input className={styles.input_text} onChange={EmailInput} value={emailValue} type="email" name="email" id="email" placeholder='Exemple@hotmail.com' required />
                         <input className={styles.input_text} onChange={PasswordInput} value={passwordValue} type="password" name="password" id="password" placeholder='Mot de passe' required />
+                        <div className={styles.checkbox}>
+                            <label htmlFor="checkbox"> Rester connecter </label>
+                            <input type="checkbox" id="checkbox" name="checkbox" value="Co" onChange={(e) => checkBox(e)} />
+                        </div>
                     </div>
                     {!loading ?
                         <input className={styles.btnSubmit} type="submit" value="Connexion" />
