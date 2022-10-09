@@ -15,4 +15,10 @@ run `node run start` or `nodemon start` to start the backend server on `port: 30
 
 # MongoDB
 mongoDb connection information must be filled in the environment file and wait for the connection response to mongoDb. 
-Once the connection to mongoDB is established, the server is operational.
+Once the connection to mongoDB is established.
+
+# MySql 
+mySql connection information must be filled in the environment file and wait for the connection response to MySql. 
+a database named 'mysql' must be present in the server at the first start of the application 
+("this database is used by the application to create a database named 'groupomania'")
+Once the connection to mySql is established, the server is operational.
