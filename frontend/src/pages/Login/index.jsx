@@ -16,7 +16,7 @@ export const Login = ({ ErrorLogin, setErrorLogin }) => {
     // contient la valeur du mot de passe saisie par l'utilisateur 
     const [passwordValue, setPasswordValue] = useState('');
     // contient le temps de connexion  de l'utilisateur 
-    const [checkbox, setCheckbox] = useState('');
+    const [checkbox, setCheckbox] = useState('4h');
 
     // passe a true si un chargement est nécessaire 
     const [loading, setLoading] = useState(false);

@@ -10,7 +10,7 @@ async function TestConnexionMySql(DB_name) {
 
     let Result;
     // initialize la connexion a la base de donnée
-    const sequelize = new Sequelize(DB_name, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889' });
+    const sequelize = new Sequelize(DB_name, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889', logging: false });
 
     const queryInterface = sequelize.getQueryInterface();
 
@@ -104,7 +104,7 @@ async function CreatedBddMySql(DB_name) {
 
     let Result;
     // initialize la connexion a la base de donnée
-    const sequelize = new Sequelize('mysql', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889' });
+    const sequelize = new Sequelize('mysql', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889', logging: false });
     // envoie de la requête pour créer la base de donnée
     await sequelize.query("CREATE DATABASE " + DB_name)
         .then(() => { return Result = true })
@@ -123,7 +123,7 @@ async function CreatedBddMySql(DB_name) {
  */
 async function Query(DB_name, SQL_req) {
     // initialize la connexion a la base de donnée
-    const sequelize = new Sequelize(DB_name, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889' });
+    const sequelize = new Sequelize(DB_name, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889', logging: false });
 
 
     let Result;

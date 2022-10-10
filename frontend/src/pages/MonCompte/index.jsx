@@ -219,7 +219,7 @@ function MonCompte({ user_profil, AllProfils, admin }) {
     }
     // function admin : supprime l'utilisateur sélectionné ainsi que toute ses informations
     function ProfilSup(profil) {
-        console.log(profil);
+
         // crée un objet json nommé user 
         let user = {
             user_profil: profil

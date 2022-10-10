@@ -42,7 +42,7 @@ export function useFetch(url) {
         fetch(url, options)
             .then((response) => response.json())
             .then((res) => {
-                console.log(res);
+
                 if (res.status === 200) {
                     /** ajoute la réponse au format json dans le state data */
                     setData(res.response)
