@@ -112,16 +112,14 @@ function Navigation({ validToken, navigation, Admin }) {
             // si postAll est déclaré 
             if (postAll) {
 
-
-
                 // récupère tout le poste sans le poste supprimé
                 setPostAll(postAll.filter((e) => e.id !== JSON.parse(post)))
 
             }
         })
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [postAll])
+
+    }, [postAll, socket, user_profil])
 
     return (
         <>{
