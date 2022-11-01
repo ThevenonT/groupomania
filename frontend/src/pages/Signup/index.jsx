@@ -20,16 +20,19 @@ export const Signup = ({ setErrorLogin, setSignupState }) => {
     function EmailInput(e) {
         setEmailValue(e.target.value)
     }
-    /** récupère l'email saisie par l'utilisateur */
+    /** récupère le mot de passe saisie par l'utilisateur */
     function PasswordInput(e) {
         setPasswordValue(e.target.value)
     }
+    // mot de passe de vérifications 
     function rePasswordInput(e) {
         setRePasswordValue(e.target.value)
     }
+    // retourne une erreur 
     function Errors(value) {
         setErrorSignup(value);
     }
+
     // au click sur submit
     function Submit(event) {
         // indique a l'utilisateur de patienté !

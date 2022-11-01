@@ -35,7 +35,7 @@ exports.AddPostData = (req, res, next) => {
 
     console.log('body', req.auth.userId);
     // eslint-disable-next-line no-useless-concat
-    Sql.Query('groupomania', `INSERT INTO post (id, userId, date, heure, image, description, usersliked, usersdisliked) VALUES (NULL, '${req.auth.userId}', '${req.body.date}', '${req.body.heure}', '${req.file.path}', '${req.body.description}', '[]', '[]');`)
+    Sql.Query('groupomania', `INSERT INTO post (id, userId, date, heure, image, description, usersliked, usersdisliked) VALUES (NULL, "${req.auth.userId}", "${req.body.date}", "${req.body.heure}", "${req.file.path}", "${req.body.description}", '[]', '[]');`)
         .then((response) => {
 
             return res.status(200).json({ status: 200, message: 'post ajouté !!', img: req.file.path, id: response, userId: req.auth.userId })
@@ -51,7 +51,7 @@ exports.ModifyPostData = (req, res, next) => {
     console.log('body', req.auth.userId);
     // eslint-disable-next-line no-useless-concat
 
-    Sql.Query('groupomania', `UPDATE post SET (id, userId, date, heure, image, description, usersliked, usersdisliked) VALUES (NULL, '${req.auth.userId}', '${req.body.date}', '${req.body.heure}', '${req.file.path}', '${req.body.description}', '${req.body.usersliked}', '${req.body.usersdisliked}');`)
+    Sql.Query('groupomania', `UPDATE post SET (id, userId, date, heure, image, description, usersliked, usersdisliked) VALUES (NULL, "${req.auth.userId}", "${req.body.date}", "${req.body.heure}", "${req.file.path}", "${req.body.description}", "${req.body.usersliked}", "${req.body.usersdisliked}");`)
         .then((response) => {
 
             return res.status(200).json({ status: 200, message: 'post ajouté !!', img: req.file.path, id: response, userId: req.auth.userId })

@@ -45,7 +45,7 @@ exports.AddProfilsData = (req, res) => {
         file = req.file.path;
     }
     // eslint-disable-next-line no-useless-concat
-    Sql.Query('groupomania', `INSERT INTO profils (id, nom, prenom, description, image, userId) VALUES (NULL, '${req.body.nom}', '${req.body.prenom}', '${req.body.description}', '${file}', '${userId}');`)
+    Sql.Query('groupomania', `INSERT INTO profils (id, nom, prenom, description, image, userId) VALUES (NULL, "${req.body.nom}", "${req.body.prenom}", "${req.body.description}", "${file}", "${userId}");`)
         .then((response) => {
             console.log(response)
             return res.status(200).json({ status: 200, message: 'profils configuré !!' })
@@ -55,6 +55,7 @@ exports.AddProfilsData = (req, res) => {
             return res.status(500).json({ err, status: 500, message: 'il y a un problème !!' })
         })
 }
+
 // ajoute un profils utilisateur 
 exports.ModifyProfilsData = (req, res) => {
 
@@ -73,7 +74,7 @@ exports.ModifyProfilsData = (req, res) => {
         return res.status(401).json({ status: 401, message: 'impossible de supprimé le compte administrateur !' })
     }
 
-    Sql.Query('groupomania', `UPDATE profils SET nom = '${req.body.nom}', prenom = '${req.body.prenom}', description = '${req.body.description}', image = '${file}' WHERE profils.id = ${req.body.id};`)
+    Sql.Query('groupomania', `UPDATE profils SET nom = "${req.body.nom}", prenom = "${req.body.prenom}", description = "${req.body.description}", image = "${file}" WHERE profils.id = ${req.body.id};`)
         .then(() => {
 
             if (req.file !== undefined) {

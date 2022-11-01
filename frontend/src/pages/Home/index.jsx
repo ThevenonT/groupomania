@@ -3,8 +3,6 @@ import { Header } from '../../components/Header';
 import { Login } from '../Login';
 import { Signup } from '../Signup';
 
-
-
 import { useVerifToken } from '../../utils/hooks/token';
 
 import Navigation from '../Navigation';
@@ -23,11 +21,6 @@ const Home = () => {
     const [navigation, setNavigation] = useState('actualité');
 
 
-
-
-
-
-
     /** Contient le token de l'utilisateur */
     let token;
 
@@ -37,14 +30,9 @@ const Home = () => {
         token = JSON.parse(sessionStorage.getItem('userSession')).token;
     }
 
-
     // vérifie le token 
     // eslint-disable-next-line no-unused-vars
     const { validToken, loader, Admin } = useVerifToken(token);
-
-
-
-
 
 
     return (
