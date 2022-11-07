@@ -121,6 +121,7 @@ function Navigation({ validToken, navigation, Admin }) {
 
     }, [postAll, socket, user_profil])
 
+
     return (
         <>{
             !user_profil ?

@@ -22,17 +22,23 @@ export const ChatRoom = ({ PostsUser, setPostUser, admin, userCo, user_profil, p
     // state btn ajouter un post passe a true quand l'utilisateur clique sur ajouter un post
     const [addPost, setAddPost] = useState(false);
 
+    const [close, setClose] = useState(true)
 
     /** gère l'animation du système de visualisation de connexion */
     function closeProfilsUsers(e) {
 
         // si un profil est présent 
         if (profilUser) {
-            e.target.offsetParent.classList.add(styles.close)
-            e.target.offsetParent.children[0].classList.add(styles.close)
+            console.log(e.target.offsetParent.children[0]);
+
+            setClose(true)
+            /*  e.target.offsetParent.classList.add(styles.close)
+             e.target.offsetParent.children[0].classList.add(styles.close) */
         } else {
-            e.target.offsetParent.classList.remove(styles.close)
-            e.target.offsetParent.children[0].classList.remove(styles.close)
+            console.log(e.target.offsetParent.children[0]);
+            setClose(false)
+            /*  e.target.offsetParent.classList.remove(styles.close)
+             e.target.offsetParent.children[0].classList.remove(styles.close) */
         }
         setProfilUser(!profilUser)
     }
@@ -46,9 +52,9 @@ export const ChatRoom = ({ PostsUser, setPostUser, admin, userCo, user_profil, p
             <h2 className={styles.title}>Fil d'actualité</h2>
 
             {/* système de visualisation de connexion */}
-            <div className={`${styles.ProfilUtilisateur} + ${styles.close}`}>
+            <div className={!close ? styles.ProfilUtilisateur : `${styles.close} + ${styles.ProfilUtilisateur}`}>
 
-                <ProfilUtilisateur styles={styles} user_profil={user_profil} userCo={userCo} AllProfils={AllProfils} />
+                <ProfilUtilisateur styles={styles} close={close} user_profil={user_profil} userCo={userCo} AllProfils={AllProfils} />
 
                 {profilUser ?
                     <span onClick={(e) => closeProfilsUsers(e)} className={styles.croix}></span>

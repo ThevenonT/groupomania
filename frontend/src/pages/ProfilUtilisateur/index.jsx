@@ -6,10 +6,10 @@
  * @param {*} users contient le tableau des utilisateurs   
  * @param {*} user_profil contient les information du profil utilisateur   
  */
-export function ProfilUtilisateur({ styles, userCo, AllProfils, user_profil }) {
+export function ProfilUtilisateur({ styles, userCo, AllProfils, user_profil, close }) {
 
     return (
-        <div className={styles.profils}>
+        <div className={!close ? styles.profils : `${styles.close} + ${styles.profils}`}>
             <p>Mon profil</p>
             <div className={styles.profil} >
                 <div className={styles.userInfo}>
