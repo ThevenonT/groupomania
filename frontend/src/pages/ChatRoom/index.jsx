@@ -27,22 +27,17 @@ export const ChatRoom = ({ PostsUser, setPostUser, admin, userCo, user_profil, p
     /** gère l'animation du système de visualisation de connexion */
     function closeProfilsUsers(e) {
 
-        // si un profil est présent 
         if (profilUser) {
-            console.log(e.target.offsetParent.children[0]);
 
             setClose(true)
-            /*  e.target.offsetParent.classList.add(styles.close)
-             e.target.offsetParent.children[0].classList.add(styles.close) */
+
         } else {
-            console.log(e.target.offsetParent.children[0]);
+
             setClose(false)
-            /*  e.target.offsetParent.classList.remove(styles.close)
-             e.target.offsetParent.children[0].classList.remove(styles.close) */
+
         }
         setProfilUser(!profilUser)
     }
-
 
 
 
@@ -81,7 +76,18 @@ export const ChatRoom = ({ PostsUser, setPostUser, admin, userCo, user_profil, p
             {/* affiche les post présent */}
             {postAll && postAll.length > 0 ?
                 postAll.map((post) =>
-                    <Posting key={'post' + Math.random()} admin={admin} PostsUser={PostsUser} setPostUser={setPostUser} socket={socket} user_profil={user_profil} post={post} postAll={postAll} setPostAll={setPostAll} AllProfils={AllProfils} />
+                    <Posting
+                        key={'post' + Math.random()}
+                        admin={admin}
+                        PostsUser={PostsUser}
+                        setPostUser={setPostUser}
+                        socket={socket}
+                        user_profil={user_profil}
+                        post={post}
+                        postAll={postAll}
+                        setPostAll={setPostAll}
+                        AllProfils={AllProfils}
+                    />
                 )
                 :
                 <>

@@ -22,3 +22,6 @@ mySql connection information must be filled in the environment file and wait for
 a database named 'mysql' must be present in the server at the first start of the application 
 ("this database is used by the application to create a database named 'groupomania'")
 Once the connection to mySql is established, the server is operational.
+
+# .env
+a file named .env_default is present and contains a model of the environment variables necessary for operation 
