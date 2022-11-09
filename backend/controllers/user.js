@@ -86,7 +86,6 @@ exports.login = (req, res, next) => {
 
 };
 
-
 /** vérifie la validité du token de l'utilisateur  */
 exports.token = (req, res, next) => {
 

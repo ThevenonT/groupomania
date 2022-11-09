@@ -25,7 +25,6 @@ Sql.TestConnexionMySql('groupomania')
             // Créer une base de donnée 
             Sql.CreatedBddMySql('groupomania')
                 .then((res) => {
-                    console.log(res);
                     // si la base de donnée a bien été créer 
                     if (res === true) {
                         Sql.TestConnexionMySql('groupomania');
@@ -41,8 +40,8 @@ mongoose.connect(process.env.CONNEXION_MONGO_DB,
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch((err) => console.log('Connexion à MongoDB échouée !', err));
+    .then(() => console.log('Connexion à MongoDB réussie !✅'))
+    .catch((err) => console.log('Connexion à MongoDB échouée !❌', err));
 
 
 

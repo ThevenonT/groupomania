@@ -46,6 +46,7 @@ exports.AddPostData = (req, res, next) => {
         })
 }
 
+// modifie un poste
 exports.ModifyPostData = (req, res, next) => {
 
     console.log('body', req.auth.userId);
@@ -62,6 +63,7 @@ exports.ModifyPostData = (req, res, next) => {
         })
 }
 
+// supprime un poste
 exports.DeletedPostData = (req, res, next) => {
 
     console.log('body', req.auth.userId);

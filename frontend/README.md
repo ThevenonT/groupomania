@@ -7,6 +7,7 @@ to clone the repository to this address `https://github.com/ThevenonT/groupomani
 go to the frontend folder and start the server.
 
 # START THE SERVER
+run `npm install` to install the dependencies and 
 run `npm run start` to start the frontend server on `port: 3006`.
 
 # PORT

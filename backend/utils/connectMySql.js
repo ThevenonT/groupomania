@@ -41,7 +41,7 @@ async function TestConnexionMySql(DB_name) {
                                 // fait la requête sql 
                                 await sequelize.query(`INSERT INTO profils (id, nom, prenom, description, image, userId) VALUES (NULL, 'Administrateur', ' ', 'se compte est le compte administrateur ', 'images/profil/default/profils_default2.png', '${process.env.ADMIN_USERID}');`)
                                     .then(async () => { CreatedTablePost() })
-                                    .catch(error => { return console.log('il y a un problème !!! : ', error) })
+                                    .catch(error => { return console.log('il y a une erreur ! ❌: ', error) })
                             }
 
                             CreatedTablePost()
@@ -73,10 +73,11 @@ async function TestConnexionMySql(DB_name) {
 
         })
             // return true si elle a bien été créer
-            .then(() => { console.log('Connexion a mySql réussie !'); return res = true; })
+            .then(() => { console.log('Connexion à mySql réussie ! ✅ '); return res = true; })
             // si une erreur survient return false 
             .catch(error => {
                 if (error !== undefined) {
+                    console.log('il y une erreur ❌ :', error);
                     return res = false;
                 }
             })
@@ -87,7 +88,6 @@ async function TestConnexionMySql(DB_name) {
     await CreatedTableProfils()
         .then((result) => { return Result = result })
         .catch(() => { return Result = false })
-
 
 
     // réponse de la function
@@ -107,7 +107,7 @@ async function CreatedBddMySql(DB_name) {
     const sequelize = new Sequelize('mysql', process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889', logging: false });
     // envoie de la requête pour créer la base de donnée
     await sequelize.query("CREATE DATABASE " + DB_name)
-        .then(() => { return Result = true })
+        .then(() => { console.log('Base de donnée créer ! ✅: ', DB_name); return Result = true })
         .catch(() => { return Result = false })
 
     // réponse de la fonction 
@@ -125,7 +125,6 @@ async function Query(DB_name, SQL_req) {
     // initialize la connexion a la base de donnée
     const sequelize = new Sequelize(DB_name, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, { dialect: "mysql", host: "localhost", port: '8889', logging: false });
 
-
     let Result;
 
     // si la connexion est établie 
@@ -136,7 +135,7 @@ async function Query(DB_name, SQL_req) {
                 Result = results;
             })
             .catch(error => {
-                return console.log('il y a un problème !!! : ', error)
+                return console.log('il y a un problème ! ❌: ', error)
             })
 
     }).catch(error => {
